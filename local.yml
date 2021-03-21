@@ -15,7 +15,7 @@
         - chromium
   
   - name: install steam flatpak
-    community.general.flatpak:
+    flatpak:
         name: com.valvesoftware.Steam
         state: present
   
