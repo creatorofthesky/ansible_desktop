@@ -8,6 +8,7 @@
     package:
       name:
         - htop
+        - psutil
         - steam
         - discord
         - code
