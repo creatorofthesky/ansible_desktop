@@ -8,7 +8,7 @@
     package:
       name:
         - htop
-        - psutil
+        - python3-psutil
         - steam
         - discord
         - code
