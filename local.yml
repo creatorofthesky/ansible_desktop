@@ -7,13 +7,19 @@
   - name: install packages
     package:
       name:
+        - flatpak
         - htop
         - python3-psutil
-        - steam
         - discord
         - code
         - chromium
-
+  
+  - name: install flatpaks
+      community.general.flatpak:
+        name: com.valvesoftware.Steam
+        state: present
+        method: system
+  
   - name: copy wallpaper file
     copy:
       src: files/wallpaper.png
