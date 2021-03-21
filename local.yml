@@ -13,6 +13,7 @@
         - python3-psutil
         - discord
         - code
+        - network-manager-openvpn-gnome
   
   - name: install flatpaks
     flatpak:
