@@ -18,7 +18,6 @@
     community.general.flatpak:
         name: com.valvesoftware.Steam
         state: present
-        method: system
   
   - name: copy wallpaper file
     copy:
