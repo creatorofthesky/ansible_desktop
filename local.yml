@@ -18,6 +18,7 @@
     flatpak:
         name: com.valvesoftware.Steam
         state: present
+        method: user
   
   - name: copy wallpaper file
     copy:
