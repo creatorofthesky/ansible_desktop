@@ -42,7 +42,7 @@
 
   - name: add ansible user
     user:
-      name: velociraptor
+      name: ansibledaemon
       system: yes
 
   - name: set up sudo for ansible user
