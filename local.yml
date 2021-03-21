@@ -7,6 +7,7 @@
   - name: install packages
     package:
       name:
+        - snapd
         - flatpak
         - htop
         - python3-psutil
@@ -22,6 +23,12 @@
       - { name: pauvucontrol, url: https://dl.flathub.org/repo/appstream/org.pulseaudio.pavucontrol.flatpakref }
       - { name: ungoogled-chromium, url: https://dl.flathub.org/repo/appstream/com.github.Eloston.UngoogledChromium.flatpakref }
   
+  - name: isntall snaps
+    snap:
+      name:
+        - auto-cpufreq
+      sate: present
+      
   - name: copy wallpaper file
     copy:
       src: files/wallpaper.png
