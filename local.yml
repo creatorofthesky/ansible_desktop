@@ -12,13 +12,15 @@
         - python3-psutil
         - discord
         - code
-        - chromium
   
-  - name: install steam flatpak
+  - name: install flatpaks
     flatpak:
-        name: com.valvesoftware.Steam
-        state: present
-        #method: user
+      name: "{{ item.url }}"
+      state: present
+      method: user
+    loop:
+      - { name: pauvucontrol, url: https://dl.flathub.org/repo/appstream/org.pulseaudio.pavucontrol.flatpakref }
+      - { name: ungoogled-chromium, url: https://dl.flathub.org/repo/appstream/com.github.Eloston.UngoogledChromium.flatpakref }
   
   - name: copy wallpaper file
     copy:
