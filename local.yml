@@ -23,11 +23,11 @@
       - { name: pauvucontrol, url: https://dl.flathub.org/repo/appstream/org.pulseaudio.pavucontrol.flatpakref }
       - { name: ungoogled-chromium, url: https://dl.flathub.org/repo/appstream/com.github.Eloston.UngoogledChromium.flatpakref }
   
-  - name: isntall snaps
+  - name: install snaps
     snap:
       name:
         - auto-cpufreq
-      sate: present
+      state: present
       
   - name: copy wallpaper file
     copy:
