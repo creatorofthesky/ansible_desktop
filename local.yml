@@ -10,7 +10,7 @@
         - htop
         - steam
         - discord
-        - vscode
+        - code
         - chromium
 
   - name: copy wallpaper file
