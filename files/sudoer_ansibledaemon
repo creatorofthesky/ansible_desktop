@@ -1,1 +1,1 @@
-velociraptor ALL=(ALL) NOPASSWD: ALL
+ansibledaemon ALL=(ALL) NOPASSWD: ALL
