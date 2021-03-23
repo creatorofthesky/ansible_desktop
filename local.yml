@@ -36,17 +36,17 @@
     
   - name: Enable iommu in boot efi
     replace:
-    become_user: ansibledaemon
+    #become_user: ansibledaemon
       path: /boot/efi/loader/entries/Pop_OS-current.conf
       regexp: ' ro quiet loglevel='
       replace: ' ro quiet amd_iommu=on loglevel='
       backup: yes
-  - name: Enable hugepages
-    path: /etc/sysctl.conf
-    block: |
-      iface eth0 inet static
-          address 192.0.2.23
-          netmask 255.255.255.0
+  # - name: Enable hugepages
+  #   path: /etc/sysctl.conf
+  #   block: |
+  #     iface eth0 inet static
+  #         address 192.0.2.23
+  #         netmask 255.255.255.0
 
   - name: copy wallpaper file
     copy:
