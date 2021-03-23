@@ -17,6 +17,7 @@
         - network-manager-openvpn-gnome
         - virt-manager 
         - ovmf
+        - dconf-tools
   
   - name: install flatpaks
     flatpak:
@@ -32,7 +33,14 @@
       name:
         - auto-cpufreq
       state: present
-      
+    
+   - name: testing file edit
+     replace:
+       path: /home/sky/TEST/test_file
+       regexp: 'ro quiet'
+       replace: 'ro quiet iommu'
+       backup: yes
+    
   - name: copy wallpaper file
     copy:
       src: files/wallpaper.png
