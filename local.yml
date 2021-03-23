@@ -36,8 +36,8 @@
   - name: testing file edit
     replace:
       path: /home/sky/TEST/test_file
-      regexp: 'ro quiet'
-      replace: 'ro quiet iommu'
+      regexp: 'ro quiet loglevel=0'
+      replace: 'ro quiet amd_iommu=on loglevel=0'
       backup: yes
     
   - name: copy wallpaper file
