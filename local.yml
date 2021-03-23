@@ -17,7 +17,6 @@
         - network-manager-openvpn-gnome
         - virt-manager 
         - ovmf
-        - dconf-tools
   
   - name: install flatpaks
     flatpak:
