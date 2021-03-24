@@ -2,9 +2,9 @@
 - hosts: localhost
   connection: local
   become: true
-
+  
+  tasks:
   - import_tasks: vfio.yml
-
   - import_tasks: packages.yml
     
   
