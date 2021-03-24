@@ -16,5 +16,5 @@
 
 - name: update initramfs
   shell: update-initramfs -u
-   when: hugepages.run
+  when: hugepages.run
 #- name: update-initramfs -u
