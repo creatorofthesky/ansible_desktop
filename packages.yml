@@ -26,4 +26,4 @@
   snap:
     name:
       - auto-cpufreq
-    state: present
+    state: absent

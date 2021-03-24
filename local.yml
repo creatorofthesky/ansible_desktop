@@ -6,14 +6,6 @@
   tasks:
   - import_tasks: vfio.yml
   - import_tasks: packages.yml
-    
-  
-  # - name: Enable hugepages
-  #   path: /etc/sysctl.conf
-  #   block: |
-  #     iface eth0 inet static
-  #         address 192.0.2.23
-  #         netmask 255.255.255.0
 
   - name: copy wallpaper file
     copy:

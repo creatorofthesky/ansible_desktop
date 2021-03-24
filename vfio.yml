@@ -1,6 +1,20 @@
 - name: Enable iommu in boot efi
   replace:
-      path: /boot/efi/loader/entries/Pop_OS-current.conf
-      regexp: ' ro quiet loglevel='
-      replace: ' ro quiet amd_iommu=on loglevel='
-      backup: yes
+    path: /boot/efi/loader/entries/Pop_OS-current.conf
+    regexp: ' ro quiet loglevel='
+    replace: ' ro quiet amd_iommu=on loglevel='
+    backup: yes
+
+- name: Enable hugepages
+   path: /etc/sysctl.conf
+   block: |
+    vm.nr_hugepages=8192
+    vm.hugetlb_shm_group=48
+   tags: hugepages
+
+- name: update initramfs
+   become: true
+   become_user: ansibledaemon
+   shell: update-initramfs -u
+   when: hugepages.run
+#- name: update-initramfs -u
