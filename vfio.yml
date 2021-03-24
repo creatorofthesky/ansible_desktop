@@ -6,10 +6,12 @@
    backup: yes
 
 - name: Enable hugepages
+  blockinfile:
    path: /etc/sysctl.conf
    block: |
     vm.nr_hugepages=8192
     vm.hugetlb_shm_group=48
+   backup: yes
    tags: hugepages
 
 - name: update initramfs
