@@ -15,7 +15,7 @@
    tags: hugepages
 
 - name: update initramfs
-   become: true
+   #become: true
    become_user: ansibledaemon
    shell: update-initramfs -u
    when: hugepages.run
