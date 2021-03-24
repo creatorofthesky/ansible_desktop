@@ -3,44 +3,11 @@
   connection: local
   become: true
 
-  tasks:
-  - name: install packages
-    package:
-      name:
-        - grub2
-        - snapd
-        - steam
-        - flatpak
-        - htop
-        - python3-psutil
-        - discord
-        - code
-        - network-manager-openvpn-gnome
-        - virt-manager 
-        - ovmf
-  
-  - name: install flatpaks
-    flatpak:
-      name: "{{ item.url }}"
-      state: present
-      method: user
-    loop:
-      - { name: pauvucontrol, url: https://dl.flathub.org/repo/appstream/org.pulseaudio.pavucontrol.flatpakref }
-      - { name: ungoogled-chromium, url: https://dl.flathub.org/repo/appstream/com.github.Eloston.UngoogledChromium.flatpakref }
-  
-  - name: install snaps
-    snap:
-      name:
-        - auto-cpufreq
-      state: present
+  - import_tasks: vfio.yml
+
+  - import_tasks: packages.yml
     
-  - name: Enable iommu in boot efi
-    replace:
-    #become_user: ansibledaemon
-      path: /boot/efi/loader/entries/Pop_OS-current.conf
-      regexp: ' ro quiet loglevel='
-      replace: ' ro quiet amd_iommu=on loglevel='
-      backup: yes
+  
   # - name: Enable hugepages
   #   path: /etc/sysctl.conf
   #   block: |

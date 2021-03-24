@@ -1,0 +1,29 @@
+- name: install packages
+  package:
+    name:
+      - grub2
+      - snapd
+      - steam
+      - flatpak
+      - htop
+      - python3-psutil
+      - discord
+      - code
+      - network-manager-openvpn-gnome
+      - virt-manager 
+      - ovmf
+
+- name: install flatpaks
+  flatpak:
+    name: "{{ item.url }}"
+    state: present
+    method: user
+  loop:
+    - { name: pauvucontrol, url: https://dl.flathub.org/repo/appstream/org.pulseaudio.pavucontrol.flatpakref }
+    - { name: ungoogled-chromium, url: https://dl.flathub.org/repo/appstream/com.github.Eloston.UngoogledChromium.flatpakref }
+
+- name: install snaps
+  snap:
+    name:
+      - auto-cpufreq
+    state: present
