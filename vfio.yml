@@ -18,5 +18,5 @@
   shell: update-initramfs -u
   become: yes
   become_user: ansibledaemon
-  when: hugepages.run
+  when: hugepages is changed
 #- name: update-initramfs -u
