@@ -1,6 +1,7 @@
-- name: Enable iommu in boot efi
-    replace:
-      path: /boot/efi/loader/entries/Pop_OS-current.conf
-      regexp: ' ro quiet loglevel='
-      replace: ' ro quiet amd_iommu=on loglevel='
-      backup: yes
+tasks:
+  - name: Enable iommu in boot efi
+      replace:
+        path: /boot/efi/loader/entries/Pop_OS-current.conf
+        regexp: ' ro quiet loglevel='
+        replace: ' ro quiet amd_iommu=on loglevel='
+        backup: yes
