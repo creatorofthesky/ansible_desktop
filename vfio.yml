@@ -7,7 +7,8 @@
    group: root
    #backup: yes
   become: yes
-
+  register: update-grub
+  
 - name: Enable hugepages
   blockinfile:
    path: /etc/sysctl.conf
@@ -22,4 +23,9 @@
   become: yes
   become_user: ansibledaemon
   when: hugepages.changed
-#- name: update-initramfs -u
+
+- name: update grub
+  shell: update-grub
+  become: yes
+  become_user: ansibledaemon
+  when: update-grub.changed
