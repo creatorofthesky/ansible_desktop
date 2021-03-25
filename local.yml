@@ -36,7 +36,7 @@
   - name: copy bash_aliases file
     copy:
      src: files/bash_aliases
-     dest: /home/sky/.bashrc_aliases
+     dest: /home/sky/.bash_aliases
      owner: sky
      group: sky
 
