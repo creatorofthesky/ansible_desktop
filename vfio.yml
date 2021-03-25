@@ -7,7 +7,7 @@
    group: root
    #backup: yes
   become: yes
-  register: update-grub
+  register: update_grub
   
 - name: Enable hugepages
   blockinfile:
@@ -28,4 +28,4 @@
   shell: update-grub
   become: yes
   become_user: ansibledaemon
-  when: update-grub.changed
+  when: update_grub.changed
