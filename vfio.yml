@@ -3,6 +3,8 @@
    path: /boot/efi/loader/entries/Pop_OS-current.conf
    regexp: ' ro quiet loglevel='
    replace: ' ro quiet amd_iommu=on loglevel='
+   owner: root
+   group: root
    backup: yes
 
 - name: Enable hugepages
