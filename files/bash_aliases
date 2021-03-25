@@ -1,1 +1,1 @@
-alias ansible-update="sudo ansible-pull -U https://github.com/creatorofthesky/ansible_desktop.git"
+alias ansible_update="sudo ansible-pull -U https://github.com/creatorofthesky/ansible_desktop.git"
