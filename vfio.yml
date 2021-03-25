@@ -5,7 +5,7 @@
    replace: ' ro quiet amd_iommu=on loglevel='
    owner: root
    group: root
-   backup: yes
+   #backup: yes
   become: yes
 
 - name: Enable hugepages
