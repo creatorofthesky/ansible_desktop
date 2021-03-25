@@ -12,6 +12,7 @@
       - network-manager-openvpn-gnome
       - virt-manager 
       - ovmf
+      - hwloc
 
 - name: install flatpaks
   flatpak:
