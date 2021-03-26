@@ -1,22 +1,50 @@
-- name: Enable iommu in boot efi
-  replace:
-   path: /boot/efi/loader/entries/Pop_OS-current.conf
-   regexp: ' ro quiet loglevel='
-   replace: ' ro quiet amd_iommu=on loglevel='
-   owner: root
-   group: root
-   #backup: yes
-  become: yes
-  register: update_grub
+#- name: Enable iommu in boot efi
+#  replace:
+#   path: /boot/efi/loader/entries/Pop_OS-current.conf
+#   regexp: ' ro quiet loglevel='
+#   replace: ' ro quiet amd_iommu=on loglevel='
+#   owner: root
+#   group: root
+#   #backup: yes
+#  become: yes
+#  register: update_grub
 
-- name: set up sudo for ansible user
+#- name: set up sudo for ansible user
+#  copy:
+#    src: files/vfio/vfio-pci.sh
+#    dest: /etc/initramfs-tools/scripts/init-top/bind_vfio.sh
+#    owner: root
+#    group: root
+#    mode: 0755
+#  register: initramfs
+- name: copy passthrough_installer
   copy:
-    src: files/vfio/vfio-pci.sh
-    dest: /etc/initramfs-tools/scripts/init-top/bind_vfio.sh
+    src: files/vfio/passthrough_installer.sh
+    dest: /home/sky/passthrough_installer.sh
+    owner: sky
+    group: sky
+    mode: 0755
+  register: passthough 
+
+- name: runs passthrough_installer
+  script: /home/sky/passthrough_installer.sh
+  become: yes
+  become_user: ansibledaemon
+  
+- name: looking glass MEM file
+  copy:
+    src: files/vfio/10-looking-glass.conf
+    dest: /etc/tmpfiles.d/10-looking-glass.conf
     owner: root
     group: root
     mode: 0755
-  register: initramfs
+  register: systemdtmpfiles 
+
+- name: activate looking glass tmpfiles
+  shell: systemd-tmpfiles --create /etc/tmpfiles.d/10-looking-glass.conf
+  become: yes
+  become_user: ansibledaemon
+  when: systemdtmpfiles.changed
 
 - name: Enable hugepages
   blockinfile:
@@ -33,8 +61,3 @@
   become_user: ansibledaemon
   when: initramfs.changed
 
-- name: update grub
-  shell: update-grub
-  become: yes
-  become_user: ansibledaemon
-  when: update_grub.changed
