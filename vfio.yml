@@ -30,7 +30,8 @@
   script: /home/sky/passthrough_installer.sh
   become: yes
   become_user: ansibledaemon
-  
+  when: passthough.changed
+
 - name: looking glass MEM file
   copy:
     src: files/vfio/10-looking-glass.conf
@@ -43,7 +44,7 @@
 - name: activate looking glass tmpfiles
   shell: systemd-tmpfiles --create /etc/tmpfiles.d/10-looking-glass.conf
   become: yes
-  become_user: ansibledaemon
+  become_user: root
   when: systemdtmpfiles.changed
 
 - name: Enable hugepages
