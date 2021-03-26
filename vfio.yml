@@ -8,6 +8,15 @@
    #backup: yes
   become: yes
   register: update_grub
+
+- name: set up sudo for ansible user
+  copy:
+    src: files/vfio/vfio-pci.sh
+    dest: /etc/initramfs-tools/scripts/init-top/bind_vfio.sh
+    owner: root
+    group: root
+    mode: 0755
+  when: initramfs.changed
   
 - name: Enable hugepages
   blockinfile:
@@ -16,13 +25,13 @@
     vm.nr_hugepages=8192
     vm.hugetlb_shm_group=48
    backup: yes
-  register: hugepages
+  register: initramfs
 
 - name: update initramfs
   shell: update-initramfs -u
   become: yes
   become_user: ansibledaemon
-  when: hugepages.changed
+  when: initramfs.changed
 
 - name: update grub
   shell: update-grub
