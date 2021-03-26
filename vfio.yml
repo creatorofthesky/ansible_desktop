@@ -16,8 +16,8 @@
     owner: root
     group: root
     mode: 0755
-  when: initramfs.changed
-  
+  register: initramfs
+
 - name: Enable hugepages
   blockinfile:
    path: /etc/sysctl.conf
