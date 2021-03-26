@@ -9,7 +9,7 @@
       - python3-psutil
       - discord
       - code
-      - Nextcloud-desktop
+      - nextcloud-desktop
       - network-manager-openvpn-gnome
       - virt-manager 
       - ovmf
