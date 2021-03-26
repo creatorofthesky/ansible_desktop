@@ -13,6 +13,8 @@
       - virt-manager 
       - ovmf
       - hwloc
+      - pcscd
+      - yubioath-desktop
 
 - name: install flatpaks
   flatpak:
