@@ -29,7 +29,7 @@
 - name: copy scream file
   copy:
     src: files/vfio/screamlan.service
-    dest: ~/.config/systemd/user/screamlan.service
+    dest: /home/sky/.config/systemd/user/screamlan.service
     owner: sky
     group: sky
     mode: 0755
