@@ -26,6 +26,11 @@
     mode: 0755
   register: passthough 
 
+- name: create directory for screamlan service
+    file:
+      path: /home/sky/.config/systemd/user
+      state: directory
+
 - name: copy scream file
   copy:
     src: files/vfio/screamlan.service
