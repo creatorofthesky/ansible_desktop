@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=3.0
+Type=Application
+Terminal=false
+Exec=/usr/local/bin/looking-glass-client
+Name=looking-glass
+Icon=/path/to/icon

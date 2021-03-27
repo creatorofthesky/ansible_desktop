@@ -26,6 +26,15 @@
     mode: 0755
   register: passthough 
 
+- name: copy scream file
+  copy:
+    src: files/vfio/screamlan.service
+    dest: ~/.config/systemd/user/screamlan.service
+    owner: sky
+    group: sky
+    mode: 0755
+  #register: screamlan
+
 - name: runs passthrough_installer
   script: /home/sky/passthrough_installer.sh
   become: yes
