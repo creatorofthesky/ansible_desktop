@@ -27,9 +27,9 @@
   register: passthough 
 
 - name: create directory for screamlan service
-    file:
-      path: /home/sky/.config/systemd/user
-      state: directory
+  file:
+    path: /home/sky/.config/systemd/user
+    state: directory
 
 - name: copy scream file
   copy:
