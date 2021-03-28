@@ -7,12 +7,13 @@
 
 - name: desktop files
   copy:
-    src: files/desktop/*
+    src: 'files/desktop/{{item}}'
     dest: /home/sky/.local/share/applications/
     owner: sky
     group: sky
     mode: 0755
-
+  loop:
+   - SOULCALIBUR VI.desktop
 - name: copy wallpaper file
   copy:
     src: files/wallpaper.png
