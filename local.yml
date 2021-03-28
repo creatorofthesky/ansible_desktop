@@ -3,6 +3,13 @@
   connection: local
   become: true
   
+  pretask:
+  - name: update repo
+    apt:
+      update_cache: yes
+    changed_when: false
+    
+
   tasks:
   - import_tasks: vfio.yml
   - import_tasks: packages.yml
