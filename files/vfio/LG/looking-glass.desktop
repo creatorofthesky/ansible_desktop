@@ -3,6 +3,6 @@ Encoding=UTF-8
 Version=3.0
 Type=Application
 Terminal=false
-Exec=/usr/local/bin/looking-glass-client input:rawMouse=true input:autoCapture=true win:minimizeOnFocusLoss=false -F -d 
+Exec=/usr/bin/virsh start Baseline ; /usr/local/bin/looking-glass-client input:rawMouse=true input:autoCapture=true win:minimizeOnFocusLoss=false -F -d 
 Name=looking-glass
 Icon=/home/sky/.local/share/applications/looking-glass.png

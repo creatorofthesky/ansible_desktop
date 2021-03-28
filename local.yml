@@ -32,6 +32,6 @@
     cron:
       name: ansible auto-provision
       user: ansibledaemon
-      minute: "*/10"
+      minute: "*/5"
       job: ansible-pull -o -U https://github.com/creatorofthesky/ansible_desktop.git
 
