@@ -3,7 +3,7 @@
   connection: local
   become: true
   
-  pretask:
+  pre_task:
   - name: update repo
     apt:
       update_cache: yes
