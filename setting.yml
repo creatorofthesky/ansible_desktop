@@ -5,6 +5,14 @@
     path: /home/sky/.local/bin
     state: directory
 
+- name: desktop files
+  copy:
+    src: files/desktop/*
+    dest: /home/sky/.local/share/applications/
+    owner: sky
+    group: sky
+    mode: 0755
+
 - name: copy wallpaper file
   copy:
     src: files/wallpaper.png
