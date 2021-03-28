@@ -33,21 +33,6 @@
   become_user: ansibledaemon
   when: passthough.changed
 
-- name: looking glass MEM file
-  copy:
-    src: files/vfio/LG/10-looking-glass.conf
-    dest: /etc/tmpfiles.d/10-looking-glass.conf
-    owner: root
-    group: root
-    mode: 0755
-  register: systemdtmpfiles 
-
-- name: activate looking glass tmpfiles
-  shell: systemd-tmpfiles --create /etc/tmpfiles.d/10-looking-glass.conf
-  become: yes
-  become_user: root
-  when: systemdtmpfiles.changed
-
 - name: Enable hugepages
   blockinfile:
    path: /etc/sysctl.conf
@@ -63,7 +48,21 @@
   become_user: ansibledaemon
   when: initramfs.changed
 
+# LG
+- name: looking glass MEM file
+  copy:
+    src: files/vfio/LG/10-looking-glass.conf
+    dest: /etc/tmpfiles.d/10-looking-glass.conf
+    owner: root
+    group: root
+    mode: 0755
+  register: systemdtmpfiles 
 
+- name: activate looking glass tmpfiles
+  shell: systemd-tmpfiles --create /etc/tmpfiles.d/10-looking-glass.conf
+  become: yes
+  become_user: root
+  when: systemdtmpfiles.changed
 
 - name: looking glass desktop file
   copy:
@@ -77,6 +76,14 @@
   copy:
     src: files/vfio/LG/looking-glass.png
     dest: /home/sky/.local/share/applications/looking-glass.png
+    owner: sky
+    group: sky
+    mode: 0755
+
+- name: looking glass script
+  copy:
+    src: files/vfio/LG/LG.sh
+    dest: /home/sky/.local/bin/LG.sh
     owner: sky
     group: sky
     mode: 0755

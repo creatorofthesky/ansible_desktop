@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Version=3.0
 Type=Application
-Terminal=true
-Exec=/usr/bin/bash -c "LIBVIRT_DEFAULT_URI='qemu:///system' /usr/bin/virsh start Baseline ; /usr/local/bin/looking-glass-client input:rawMouse=true input:autoCapture=true win:minimizeOnFocusLoss=false -F -d" 
+Terminal=false
+Exec=/home/sky/.local/bin/LG.sh
 Name=looking-glass
 Icon=/home/sky/.local/share/applications/looking-glass.png
