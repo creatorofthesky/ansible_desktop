@@ -5,4 +5,4 @@ Type=Application
 Terminal=false
 Exec=/usr/local/bin/looking-glass-client
 Name=looking-glass
-Icon=/path/to/icon
+Icon=/home/sky/.local/share/applications/looking-glass.png

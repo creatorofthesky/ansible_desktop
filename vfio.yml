@@ -35,7 +35,7 @@
 
 - name: looking glass MEM file
   copy:
-    src: files/vfio/10-looking-glass.conf
+    src: files/vfio/LG/10-looking-glass.conf
     dest: /etc/tmpfiles.d/10-looking-glass.conf
     owner: root
     group: root
@@ -62,3 +62,21 @@
   become: yes
   become_user: ansibledaemon
   when: initramfs.changed
+
+
+
+- name: looking glass desktop file
+  copy:
+    src: files/vfio/LG/looking-glass.desktop
+    dest: /home/sky/.local/share/applications/looking-glass.desktop
+    owner: sky
+    group: sky
+    mode: 0755
+
+- name: looking glass desktop file
+  copy:
+    src: files/vfio/LG/looking-glass.png
+    dest: /home/sky/.local/share/applications/looking-glass.png
+    owner: sky
+    group: sky
+    mode: 0755
