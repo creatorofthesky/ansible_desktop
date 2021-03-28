@@ -1,5 +1,7 @@
 - name: .local/bin
   file:
+    owner: sky
+    group: sky
     path: /home/sky/.local/bin
     state: directory
 
