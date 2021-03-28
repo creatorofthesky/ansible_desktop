@@ -1,3 +1,4 @@
+# vfio setup
 - name: copy passthrough_installer
   copy:
     src: files/vfio/passthrough_installer.sh
@@ -6,26 +7,6 @@
     group: sky
     mode: 0755
   register: passthough 
-
-- name: create directory for screamlan service
-  file:
-    path: /home/sky/.config/systemd/user
-    state: directory
-
-- name: copy scream file
-  copy:
-    src: files/vfio/screamlan.service
-    dest: /home/sky/.config/systemd/user/screamlan.service
-    owner: sky
-    group: sky
-    mode: 0755
-  register: screamlan
-
-- name: activate screamlan service
-  shell: systemctl enable --now --user screamlan
-  become: yes
-  become_user: sky
-  when: screamlan.changed
 
 - name: runs passthrough_installer
   script: /home/sky/passthrough_installer.sh
@@ -47,6 +28,27 @@
   become: yes
   become_user: ansibledaemon
   when: initramfs.changed
+
+# scream service
+- name: create directory for screamlan service
+  file:
+    path: /home/sky/.config/systemd/user
+    state: directory
+
+- name: copy scream file
+  copy:
+    src: files/vfio/screamlan.service
+    dest: /home/sky/.config/systemd/user/screamlan.service
+    owner: sky
+    group: sky
+    mode: 0755
+  register: screamlan
+
+- name: activate screamlan service
+  shell: systemctl enable --now --user screamlan
+  become: yes
+  become_user: sky
+  when: screamlan.changed
 
 # LG
 - name: looking glass MEM file
