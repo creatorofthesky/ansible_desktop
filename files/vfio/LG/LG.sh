@@ -1,4 +1,7 @@
-#!/bin/bash
-DISPLAY=:1 LIBVIRT_DEFAULT_URI='qemu:///system' /usr/bin/virsh start Baseline 
+#!/usr/bin/sh
+cd "${0%/*}"
+#DISPLAY=:1 LIBVIRT_DEFAULT_URI='qemu:///system' 
+nohup virsh start Baseline  &
 wait
-/usr/local/bin/looking-glass-client input:rawMouse=true input:autoCapture=true win:minimizeOnFocusLoss=false -F -d
+nohup /usr/local/bin/looking-glass-client input:rawMouse=true input:autoCapture=true win:minimizeOnFocusLoss=false -F -d  &
+exec sleep 1
