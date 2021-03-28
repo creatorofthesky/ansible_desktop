@@ -1,22 +1,3 @@
-#- name: Enable iommu in boot efi
-#  replace:
-#   path: /boot/efi/loader/entries/Pop_OS-current.conf
-#   regexp: ' ro quiet loglevel='
-#   replace: ' ro quiet amd_iommu=on loglevel='
-#   owner: root
-#   group: root
-#   #backup: yes
-#  become: yes
-#  register: update_grub
-
-#- name: set up sudo for ansible user
-#  copy:
-#    src: files/vfio/vfio-pci.sh
-#    dest: /etc/initramfs-tools/scripts/init-top/bind_vfio.sh
-#    owner: root
-#    group: root
-#    mode: 0755
-#  register: initramfs
 - name: copy passthrough_installer
   copy:
     src: files/vfio/passthrough_installer.sh
@@ -38,7 +19,13 @@
     owner: sky
     group: sky
     mode: 0755
-  #register: screamlan
+  register: screamlan
+
+- name: activate screamlan service
+  shell: systemctl enable --now --user screamlan
+  become: yes
+  become_user: sky
+  when: screamlan.changed
 
 - name: runs passthrough_installer
   script: /home/sky/passthrough_installer.sh
@@ -75,4 +62,3 @@
   become: yes
   become_user: ansibledaemon
   when: initramfs.changed
-
