@@ -11,9 +11,10 @@
     
 
   tasks:
+  - import_tasks: setting.yml
   - import_tasks: vfio.yml
   - import_tasks: packages.yml
-  - import_tasks: setting.yml
+  
 
   - name: add ansible user
     user:
