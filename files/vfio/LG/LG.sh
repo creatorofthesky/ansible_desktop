@@ -1,4 +1,5 @@
 #!/bin/bash
+DISPLAY=1
 LIBVIRT_DEFAULT_URI='qemu:///system' 
 /usr/bin/virsh start Baseline 
 wait
