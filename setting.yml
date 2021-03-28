@@ -1,0 +1,32 @@
+- name: copy wallpaper file
+  copy:
+    src: files/wallpaper.png
+    dest: /usr/share/backgrounds/ansible-wallpaper.png
+    owner: root
+    group: root
+
+- name: set wallpaper
+  become_user: sky
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file:///usr/share/backgrounds/ansible-wallpaper.png'"
+
+- name: set wallpaper position
+  become_user: sky
+  dconf:
+    key: "/org/gnome/desktop/background/picture-options"
+    value: "'zoom'"
+
+- name: copy .bashrc file
+  copy:
+   src: files/bashrc
+   dest: /home/sky/.bashrc
+   owner: sky
+   group: sky
+   
+- name: copy bash_aliases file
+  copy:
+   src: files/bash_aliases
+   dest: /home/sky/.bash_aliases
+   owner: sky
+   group: sky
