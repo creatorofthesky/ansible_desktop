@@ -11,9 +11,6 @@
       - code
       - nextcloud-desktop
       - network-manager-openvpn-gnome
-      - virt-manager 
-      - ovmf
-      - hwloc
       - pcscd
       - yubioath-desktop
 

@@ -1,3 +1,12 @@
+# Install packages
+- name: install packages
+  package:
+    name:
+      - hwloc
+      - cset
+      - virt-manager 
+      - ovmf
+
 # vfio setup
 - name: copy passthrough_installer
   copy:
