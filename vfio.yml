@@ -3,7 +3,7 @@
   package:
     name:
       - hwloc
-      - cset
+      - cpuset
       - virt-manager 
       - ovmf
 
