@@ -13,6 +13,7 @@
       - network-manager-openvpn-gnome
       - pcscd
       - yubioath-desktop
+      - slack-desktop
 
 - name: install flatpaks
   flatpak:
