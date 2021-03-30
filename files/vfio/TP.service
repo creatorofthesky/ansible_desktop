@@ -1,0 +1,14 @@
+[Unit]
+Description=Disable Transparent Pages
+
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+ExecStartPre=echo 'never' > /sys/kernel/mm/transparent_hugepage/defrag
+ExecStart=echo 'never' > /sys/kernel/mm/transparent_hugepage/enabled
+
+
+[Install]
+WantedBy=multi-user.target

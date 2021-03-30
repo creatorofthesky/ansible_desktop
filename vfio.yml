@@ -98,3 +98,20 @@
     owner: sky
     group: sky
     mode: 0755
+
+# TP hugepages disabled service
+- name: Copy TP service file
+  copy:
+    src: files/vfio/TP.service
+    dest: /etc/systemd/system/Ansible-TP.service
+    owner: root
+    group: root
+    mode: 0755
+  register: TP
+
+- name: activate looking glass tmpfiles
+  shell: systemctl enable --now Ansible-TP.service
+  become: yes
+  become_user: root
+  when: TP.changed
+
