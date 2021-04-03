@@ -27,7 +27,8 @@
   blockinfile:
    path: /etc/sysctl.conf
    block: |
-    vm.nr_hugepages=8192
+    vm.nr_hugepages=0
+    vm.nr_overcommit_hugepages=8192
     vm.hugetlb_shm_group=48
    backup: yes
   register: initramfs
