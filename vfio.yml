@@ -36,7 +36,7 @@
 - name: update initramfs
   shell: update-initramfs -u
   become: yes
-  become_user: ansibledaemon
+  become_user: root
   when: initramfs.changed
 
 # scream service
