@@ -9,7 +9,6 @@
       - python3-psutil
       - discord
       - code
-      - python3-pip
       - nextcloud-desktop
       - network-manager-openvpn-gnome
       - pcscd
@@ -31,6 +30,3 @@
       - auto-cpufreq
     state: absent
 
-- name: Install future python package
-  pip:
-    name: future

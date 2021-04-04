@@ -4,9 +4,14 @@
     name:
       - hwloc
       - cpuset
+      - python3-pip
       - virt-manager 
       - ovmf
 
+- name: Install future python package for cset
+  pip:
+    name: future
+    
 # vfio setup
 - name: copy passthrough_installer
   copy:
@@ -48,14 +53,7 @@
 - name: copy scream file
   copy:
     src: files/vfio/screamlan.service
-    dest: /home/sky/.config/systemd/user/screamlan.service
-    owner: sky
-    group: sky
-    mode: 0755
-  register: screamlan
-
-- name: activate screamlan service
-  shell: systemctl enable --now --user screamlan
+    dest: /home/sky/.config/sy- python3-pipow --user screamlan
   become: yes
   become_user: sky
   when: screamlan.changed
