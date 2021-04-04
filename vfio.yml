@@ -119,7 +119,7 @@
 # CPU Isolation
 - name: Copy TP service file
   copy:
-    src: files/vfio/cpu-Isolation/isol
+    src: files/vfio/cpu-isolation/isol
     dest: /etc/libvirt/hooks/qemu
     owner: root
     group: root
