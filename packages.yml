@@ -9,6 +9,7 @@
       - python3-psutil
       - discord
       - code
+      - python3-pip
       - nextcloud-desktop
       - network-manager-openvpn-gnome
       - pcscd
@@ -29,3 +30,8 @@
     name:
       - auto-cpufreq
     state: absent
+
+- name: install future for cset
+  shell: pip install future
+  become: yes
+  become_user: root
