@@ -116,3 +116,11 @@
   become_user: root
   when: TP.changed
 
+# CPU Isolation
+- name: Copy TP service file
+  copy:
+    src: files/vfio/cpu-Isolation/isol
+    dest: /etc/libvirt/hooks/qemu
+    owner: root
+    group: root
+    mode: 0755
