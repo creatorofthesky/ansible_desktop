@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# This script dynamically manages allocated hugepages size depending on running libvirt VMs.
+# Based on Thomas Lindroth's shell script which sets up host for VM: http://sprunge.us/JUfS
+# put this script to /etc/libvirt/hooks/qemu
+
+TOTAL_CORES='0-23'
+TOTAL_CORES_MASK=FFFFFF           # 0-23, bitmask 0b111111111111111111111111
+HOST_CORES='0-5,12-17'            # Cores reserved for host
+HOST_CORES_MASK=3F03F             # 6-11,18-23, bitmask 0b000000111111000000111111
+VIRT_CORES='6-11,18-23'           # Cores reserved for virtual machine(s)
+
+VM_NAME="$1"
+VM_ACTION="$2/$3"
+
+function shield_vm() {
+    cset -m set -c $TOTAL_CORES -s machine.slice
+    cset -m shield --kthread on --cpu $VIRT_CORES
+}
+
+function unshield_vm() {
+    cset -m shield --reset
+}
+
+# For convenient manual invocation
+if [[ "$VM_NAME" == "shield" ]]; then
+    shield_vm
+    exit
+elif [[ "$VM_NAME" == "unshield" ]]; then
+    unshield_vm
+    exit
+fi
+
+if [[ "$VM_ACTION" == "prepare/begin" ]]; then
+    echo "libvirt-qemu cset: Reserving CPUs $VIRT_CORES for VM $VM_NAME" > /dev/kmsg 2>&1
+    shield_vm > /dev/kmsg 2>&1
+
+    # the kernel's dirty page writeback mechanism uses kthread workers. They introduce
+    # massive arbitrary latencies when doing disk writes on the host and aren't
+    # migrated by cset. Restrict the workqueue to use only cpu 0.
+    echo $HOST_CORES_MASK > /sys/bus/workqueue/devices/writeback/cpumask
+    echo 0 > /sys/bus/workqueue/devices/writeback/numa
+
+    echo "libvirt-qemu cset: Successfully reserved CPUs $VIRT_CORES" > /dev/kmsg 2>&1
+elif [[ "$VM_ACTION" == "release/end" ]]; then
+    echo "libvirt-qemu cset: Releasing CPUs $VIRT_CORES from VM $VM_NAME" > /dev/kmsg 2>&1
+    unshield_vm > /dev/kmsg 2>&1
+
+    # Revert changes made to the writeback workqueue
+    echo $TOTAL_CORES_MASK > /sys/bus/workqueue/devices/writeback/cpumask
+    echo 1 > /sys/bus/workqueue/devices/writeback/numa
+
+    echo "libvirt-qemu cset: Successfully released CPUs $VIRT_CORES" > /dev/kmsg 2>&1
+fi
