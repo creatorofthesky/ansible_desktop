@@ -31,7 +31,6 @@
       - auto-cpufreq
     state: absent
 
-- name: install future for cset
-  shell: pip install future
-  become: yes
-  become_user: root
+- name: Install future python package
+  pip:
+    name: future
