@@ -53,10 +53,10 @@
 - name: copy scream file
   copy:
     src: files/vfio/screamlan.service
-    dest: /home/sky/.config/sy- python3-pipow --user screamlan
+    dest: /home/sky/.config/systemd/user/screamlan.service
   become: yes
   become_user: sky
-  when: screamlan.changed
+  register: screamlan
 
 # LG
 - name: looking glass MEM file
