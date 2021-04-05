@@ -9,7 +9,6 @@
       - python3-psutil
       - discord
       - code
-      - indicator-cpufreq
       - nextcloud-desktop
       - network-manager-openvpn-gnome
       - pcscd
