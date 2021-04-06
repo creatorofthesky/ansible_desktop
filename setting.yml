@@ -69,7 +69,7 @@
    dest: /etc/udev/rules.d/
    owner: root
    group: root
-   mode: 0555
+   mode: 0655
   loop:
    - wooting-xinput.rules
    - wooting.rules
