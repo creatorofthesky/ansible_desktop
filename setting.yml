@@ -48,6 +48,9 @@
    owner: sky
    group: sky
 
+# udev
+
+
 # services 
 - name: copy system service files
   copy:
@@ -60,11 +63,23 @@
    - wooting-xinput@.service
   register: service
 
-- name: Start service httpd, if not started
-  ansible.builtin.service:
-    name: '{{item}}'
-    state: started
-    enabled: yes
+- name: wooting udev rules 
+  copy:
+   src: 'files/udev/{{item}}'
+   dest: /etc/udev/rules.d/
+   owner: root
+   group: root
+   mode: 0555
   loop:
-   - wooting-xinput@.service
-  when: service.changed
+   - wooting-xinput.rules
+   
+# sudo udevadm control --reload-rules && sudo udevadm trigger
+
+#- name: Start service httpd, if not started
+#  ansible.builtin.service:
+#    name: '{{item}}'
+#    state: started
+#    enabled: yes
+#  loop:
+#   - wooting-xinput@.service
+#  when: service.changed
