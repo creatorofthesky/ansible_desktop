@@ -61,7 +61,7 @@
    mode: 0755
   loop:
    - wooting-xinput@.service
-  register: service
+  
 
 - name: wooting udev rules 
   copy:
@@ -72,7 +72,14 @@
    mode: 0555
   loop:
    - wooting-xinput.rules
-   
+  register: udev
+
+- name: activate looking glass tmpfiles
+  shell: udevadm control --reload-rules && sudo udevadm trigger
+  become: yes
+  become_user: root
+  when: udev.changed
+
 # sudo udevadm control --reload-rules && sudo udevadm trigger
 
 #- name: Start service httpd, if not started
