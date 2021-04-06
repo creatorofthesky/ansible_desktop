@@ -72,6 +72,7 @@
    mode: 0555
   loop:
    - wooting-xinput.rules
+   - wooting.rules
   register: udev
 
 - name: activate looking glass tmpfiles
