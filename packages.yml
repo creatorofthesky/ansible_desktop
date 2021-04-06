@@ -12,6 +12,7 @@
       - nextcloud-desktop
       - network-manager-openvpn-gnome
       - pcscd
+      - xboxdrv
       - yubioath-desktop
       - slack-desktop
 

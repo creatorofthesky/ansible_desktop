@@ -47,3 +47,24 @@
    dest: /home/sky/.bash_aliases
    owner: sky
    group: sky
+
+# services 
+- name: copy system service files
+  copy:
+   src: 'files/services/{{item}}'
+   dest: /etc/systemd/system/
+   owner: root
+   group: root
+   mode: 0755
+  loop:
+   - wooting-xinput@.service
+  register: service
+
+- name: Start service httpd, if not started
+  ansible.builtin.service:
+    name: '{{item}}'
+    state: started
+    enabled: yes
+  loop:
+   - wooting-xinput@.service
+  when: service.changed
