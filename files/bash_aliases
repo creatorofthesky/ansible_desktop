@@ -1,5 +1,7 @@
 alias ansible_update="sudo ansible-pull -U https://github.com/creatorofthesky/ansible_desktop.git"
 alias hugepage_check="cat /proc/meminfo  |grep Huge"
+alias wmode="stat --format '%a'"
+
 function iommu_check(){
     for d in /sys/kernel/iommu_groups/*/devices/*; do
         n=${d#*/iommu_groups/*}; n=${n%%/*}
