@@ -1,6 +1,7 @@
 [Unit]
 Description=Loads the xboxdrv user-space-driver for the native Xbox 360 interface of the Wootings
-   
+StopWhenUnneeded=true
+  
 [Service]
 Type=simple
 ExecStartPre=/usr/bin/killall xboxdrv
