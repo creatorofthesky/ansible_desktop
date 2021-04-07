@@ -15,6 +15,13 @@
       - xboxdrv
       - yubioath-desktop
       - slack-desktop
+      # archive programs
+      - unrar
+      - bunzip2
+      - gunzip
+      - 7z
+      - tar
+      - 
 
 - name: install flatpaks
   flatpak:
