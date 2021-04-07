@@ -19,6 +19,7 @@
       - unrar-free
       - p7zip-full
       - tar
+      - gzip
 
 - name: install flatpaks
   flatpak:
