@@ -8,3 +8,5 @@ Check out the tutorial [here](https://youtu.be/gIDywsGBqf4) (video available Dec
 You can go through the various commits to see the revision history to go along with the video.
 
 Thanks for watching!
+
+This is now archived and mainly for my personal use. Feel free to read over it but will no longer be maintained. 
