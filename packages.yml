@@ -16,10 +16,10 @@
       - yubioath-desktop
       - slack-desktop
       # archive programs
-      - unrar
+      - unrar-free
       - bunzip2
       - gunzip
-      - 7z
+      - p7zip-full
       - tar
 
 - name: install flatpaks
