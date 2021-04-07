@@ -58,6 +58,12 @@
   become_user: sky
   register: screamlan
 
+- name: activate looking glass tmpfiles
+  shell: systemctl --user enable --now screamlan
+  become: yes
+  become_user: sky
+  when: screamlan.changed
+
 # LG
 - name: looking glass MEM file
   copy:
