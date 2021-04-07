@@ -17,7 +17,6 @@
       - slack-desktop
       # archive programs
       - unrar-free
-      - bunzip2
       - gunzip
       - p7zip-full
       - tar
