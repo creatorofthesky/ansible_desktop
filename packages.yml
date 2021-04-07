@@ -21,7 +21,6 @@
       - gunzip
       - 7z
       - tar
-      - 
 
 - name: install flatpaks
   flatpak:
